@@ -1,0 +1,83 @@
+# Folder hooks
+folder-hook 'account.collabio.team' 'source ~/.mutt/account.collabio.team'
+
+set imap_check_subscribed=yes
+
+# Default account
+source ~/.mutt/account.collabio.team         
+
+# define mailcaps
+set mailcap_path=~/.mutt/mailcap:~/.mutt/mailcap
+set mailcap_sanitize
+
+
+# Macros for switching accounts
+macro index <f2> '<sync-mailbox><enter-command>source ~/.mutt/account.collabio.team<enter><change-folder>!<enter>'
+
+bind attach <return>    view-mailcap
+bind index G imap-fetch-mail
+bind index,pager B sidebar-toggle-visible
+
+set header_cache=/var/tmp/.mutt
+set mail_check=30
+set imap_keepalive=150
+
+set send_charset="utf-8"
+set assumed_charset="utf-8"
+
+set menu_scroll=yes
+set simple_search="~f %s | ~C %s | ~s %s"
+
+set pager_format = " %C - %[%H:%M] %.20v, %s%* %?H? [%H] ?"
+
+ignore          *
+unignore        From To Cc Bcc Date Subject
+unhdr_order     *
+hdr_order       From: To: Cc: Bcc: Date: Subject:
+
+alternative_order text/plain text/enriche text/html
+auto_view text/html
+
+###############################################################################
+# Dracula Theme for Mutt: https://draculatheme.com/
+#
+# @author Paul Townsend <paul@caprica.org>
+
+# general ------------ foreground ---- background -----------------------------
+color error		color231	color212
+color indicator		color231	color241
+color markers		color210	default
+color message		default		default
+color normal		default		default
+color prompt		default	        default
+color search		color84		default
+color status 		color141	color236
+color tilde		color231	default
+color tree		color141	default
+
+# message index ------ foreground ---- background -----------------------------
+color index		color210	default 	~D # deleted messages
+color index		color84		default 	~F # flagged messages
+color index		color117	default 	~N # new messages
+color index		color212	default 	~Q # messages which have been replied to
+color index		color215	default 	~T # tagged messages
+color index		color141	default		~v # messages part of a collapsed thread
+
+# message headers ---- foreground ---- background -----------------------------
+color hdrdefault	color117	default
+color header		color231	default		^Subject:.*
+
+# message body ------- foreground ---- background -----------------------------
+color attachment	color228	default
+color body		color231	default		[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+               # email addresses
+color body		color228	default		(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+        # URLs
+color body		color231	default		(^|[[:space:]])\\*[^[:space:]]+\\*([[:space:]]|$) # *bold* text
+color body		color231	default		(^|[[:space:]])_[^[:space:]]+_([[:space:]]|$)     # _underlined_ text
+color body		color231	default		(^|[[:space:]])/[^[:space:]]+/([[:space:]]|$)     # /italic/ text
+color quoted		color61		default
+color quoted1		color117	default
+color quoted2		color84		default
+color quoted3		color215	default
+color quoted4		color212	default
+color signature		color212	default
+

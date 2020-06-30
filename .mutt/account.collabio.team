@@ -1,0 +1,9 @@
+set imap_user = "user@domain"
+set imap_pass = "passw0rd"
+set smtp_url = "smtps://full_email@MX_record:465/"
+set smtp_pass = "passw0rd"
+set from = "full_email"
+set realname = "First_name Second_name"
+set folder = "imaps://MX_record:993"
+set mbox= +Inbox
+set spoolfile= +Inbox
