@@ -1,0 +1,222 @@
+[bar/status]
+monitor = ${env:MONITOR:}
+radius = 0
+fixed-center = true
+tray-position = none
+background = true
+cursor-click = pointer
+cursor-scroll = pointer
+module-margin = 1 
+modules-right = wireless-network cpu pulseaudio memory date
+modules-center = xwindow
+modules-left = i3 
+
+font-0 = Monoid:weight=regular:size=10:antialias=true
+font-1 = Font Awesome 5 Pro:style=solid:fontformat=truetype:size=10:antialias=true
+font-2 = Noto Sans Mono:style=Regular
+font-3 = Noto Color Emoji:scale=8
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+format-prefix = 
+format = <label-indicator>
+format-prefix-foreground = #fefefa
+format-prefix-underline =
+
+label-layout =
+label-layout-underline = 
+label-indicator-on-foreground = #fefefa
+label-indicator-on-background = #f7bd51
+
+label-indicator-on-padding = 2
+label-indicator-on-margin = 0
+label-indicator-background = #8844dd
+label-indicator-underline = #8844dd
+
+indicator-icon-default = 
+indicator-icon-0 = caps lock;;
+indicator-icon-1 = scroll lock;;S
+indicator-icon-2 = num lock;;
+
+
+label-indicator-on = %icon%
+label-indicator-off = 
+
+
+label-indicator-on-capslock = %{B#06afc7} %icon% %{B-}
+label-indicator-on-numlock = %{B#ffc878} %icon% %{B-}
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+strip-wsnumbers = true
+index-sort = true
+enable-click = true
+enable-scroll = false
+wrapping-scroll = false
+reverse-scroll = false
+fuzzy-match = true
+
+format = <label-state> <label-mode>
+label-mode = %mode%
+label-mode-padding = 2
+label-mode-background = #e60053
+
+label-focused = %index%
+label-focused-foreground = #ffffff
+label-focused-background = 
+label-focused-underline = #fba922
+label-focused-padding = 0
+
+label-unfocused = %index%
+label-unfocused-padding = 0
+
+label-visible = %index%
+label-visible-underline = #555555
+label-visible-padding = 0
+
+label-urgent = %index%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+label-urgent-padding = 1 
+
+label-separator = |
+label-separator-padding = 1
+label-separator-foreground = #ffb52a
+
+[module/cpu]
+type = internal/cpu
+interval = 0.5
+format = <label> <ramp-coreload>
+
+label = CPU %percentage%
+
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+[module/memory]
+type = internal/memory
+interval = 3
+format = <label> <ramp-used>
+label = RAM %gb_used%/%gb_free%
+
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+
+[module/wireless-network]
+type = internal/network
+label-active-font = 3
+interface = wlp9s0f3u3
+interval = 3.0
+accumulate-stats = true
+unknown-as-up = true
+format-connected = <ramp-signal> <label-connected>
+
+format-disconnected = <label-disconnected>
+format-packetloss = <animation-packetloss> <label-connected>
+
+label-connected = %essid% %downspeed:9%
+label-connected-foreground = #eefafafa
+
+label-disconnected = not connected
+label-disconnected-foreground = #66ffffff
+
+; Only applies if <ramp-signal> is used
+ramp-signal-0 = 😱
+ramp-signal-1 = 😠
+ramp-signal-2 = 😒
+ramp-signal-3 = 😊
+ramp-signal-4 = 😃
+ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_0a_00.3.analog-stereo
+use-ui-max = true
+interval = 3
+format-volume = volume <ramp-volume>
+label-muted = volume X
+label-muted-foreground = #666
+
+; Only applies if <ramp-volume> is used
+
+ramp-volume-0 = ▁
+ramp-volume-1 = ▂
+ramp-volume-2 = ▃
+ramp-volume-3 = ▄
+ramp-volume-4 = ▅
+ramp-volume-5 = ▆
+ramp-volume-6 = ▇
+ramp-volume-7 = █
+
+[module/date]
+type = internal/date
+interval = 1.0
+date = %Y-%m-%d%
+time = %H:%M
+format = <label>
+label = %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 100
+format-discharging-foreground = #77eaa549p
+
+format-charging-prefix = %{F#77eaa549} %{F-} 
+format-charging = <label-charging>
+label-charging = %percentage%
+
+format-discharging = <ramp-capacity><label-discharging>
+label-discharging = %percentage%
+
+format-full-prefix = %{F#77eaa549} %{F-} 
+format-full = <label-full>
+label-full = %percentage%
+
+ramp-capacity-0 = %{F#e35b00} %{F-} 
+ramp-capacity-1 = %{F#e35b00} %{F-} 
+ramp-capacity-2 = %{F#e35b00} %{F-} 
+ramp-capacity-3 = %{F#77eaa549} %{F-} 
+ramp-capacity-4 = %{F#77eaa549} %{F-} 
+
+[settings]
+screenchange-reload = true
+pseudo-transparency = true
+
+[global/wm]
+margin-top = 94
+margin-bottom = 0
+
