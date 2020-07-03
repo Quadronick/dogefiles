@@ -134,8 +134,6 @@ gaps inner 8
 gaps outer 0
 gaps bottom 8
 
-exec_always --no-startup-id "setxkbmap -layout us,ru"
-exec_always --no-startup-id "setxkbmap -option grp:caps_toggle,grp_led:scroll"
 exec_always --no-startup-id "feh --bg-scale ~/path/to/image.jpg"
 exec_always --no-startup-id "~/.config/polybar/starup.sh"
 exec_always --no-startup-id "picom -b --experimental-backends --config ~/.config/picom/picom.conf"
