@@ -11,8 +11,8 @@ modules-right = wireless-network cpu pulseaudio memory date
 modules-center = xwindow
 modules-left = i3 
 
-font-0 = Monoid:weight=regular:size=10:antialias=true
-font-1 = Font Awesome 5 Pro:style=solid:fontformat=truetype:size=10:antialias=true
+font-0 = PT Sans:weight=regular:size=11:antialias=true
+font-1 = Font Awesome 5 Pro:size=10:antialias=true
 font-2 = Noto Sans Mono:style=Regular
 font-3 = Noto Color Emoji:scale=8
 
